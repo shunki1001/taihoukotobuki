@@ -47,7 +47,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2>
-            Docs <span>-&gt;</span>
+            大宝寿の店 <span>-&gt;</span>
           </h2>
           <p>Find in-depth information about Next.js features and API.</p>
         </a>
@@ -61,7 +61,7 @@ export default function Home() {
           <h2>
             Learn <span>-&gt;</span>
           </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
+          <p>大宝寿の店</p>
         </a>
 
         <a
