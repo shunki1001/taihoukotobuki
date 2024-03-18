@@ -1,5 +1,7 @@
 import { Box, Container, Grid } from '@mui/material';
 import * as React from 'react';
+import Image from 'next/image'
+import top_view from '../../../public/img/DSC00167.jpg'
 
 const Top = () => {
   return (
@@ -8,15 +10,17 @@ const Top = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        pt: { xs: 14, sm: 20 },
         pb: { xs: 8, sm: 12 },
       }}
     >
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={6}>
-          TOP VIEW 
-        </Grid>
-      </Grid>
+        <Box sx={{position: 'relative', display: 'block', width: '100vw', height: '66vw'}}>
+        <Image
+            src={top_view}
+            fill
+            objectFit='contain'
+            alt="top view"
+          />
+        </Box>
     </Container>
   )
 }
