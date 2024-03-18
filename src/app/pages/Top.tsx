@@ -13,11 +13,10 @@ const Top = () => {
         pb: { xs: 8, sm: 12 },
       }}
     >
-        <Box sx={{position: 'relative', display: 'block', width: '100vw', height: '66vw'}}>
+        <Box sx={{width: '100vw', position: 'fixed', zIndex: '-10'}}>
         <Image
             src={top_view}
-            fill
-            objectFit='contain'
+            layout='responsive'
             alt="top view"
           />
         </Box>
