@@ -1,26 +1,28 @@
-import { Card, CardContent, CardHeader, CardMedia } from '@mui/material'
-import Image from 'next/image'
-import React from 'react'
+import { Card, CardContent, CardHeader, CardMedia } from "@mui/material";
+import Image from "next/image";
+import React from "react";
 
-import test1 from '../../../public/img/test1.webp'
-
-const MenuCard = () => {
-  return (
-    <Card sx={{maxWidth:350}}>
-        <CardHeader title="CardHeader" />
-        <CardMedia>
-            <Image
-                src={test1}
-                width={300}
-                height={300}
-                alt="Picture of the author"
-            />
-        </CardMedia>
-        <CardContent>
-            これは一つのメニューです。
-        </CardContent>
-    </Card>
-  )
+interface MenuCardInterface {
+  src: String;
+  title: String;
+  content: String;
 }
 
-export default MenuCard
+const MenuCard = (params: MenuCardInterface) => {
+  return (
+    <Card sx={{ maxWidth: 350 }}>
+      <CardHeader title={params.title} />
+      <CardMedia>
+        <Image
+          src={params.src}
+          width={350}
+          height={350}
+          alt="Picture of the author"
+        />
+      </CardMedia>
+      <CardContent>{params.content}</CardContent>
+    </Card>
+  );
+};
+
+export default MenuCard;
