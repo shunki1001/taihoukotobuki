@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 
 interface MenuCardInterface {
-  src: String;
-  title: String;
-  content: String;
+  src: string;
+  title: string;
+  content: string;
 }
 
 const MenuCard = (params: MenuCardInterface) => {

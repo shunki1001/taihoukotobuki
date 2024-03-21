@@ -26,14 +26,14 @@ const Menu = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <MenuCard
-            src={ikayaki}
+            src={ikayaki.src}
             title="いか焼き"
             content="魔法の粉で仕上げたいかの姿焼き。鉄板の上でプレスして作り上げたいかは、一口食べるとその旨みが広がります。魔法の粉が加える深い味わいは、まさに絶品。もちろんおつまみにも最高です。"
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <MenuCard
-            src={senbei}
+            src={senbei.src}
             title="えびせん"
             content="鉄板でプレスして作られた、パリパリの食感がたまらないえびせんべい。一口食べると、その香りと風味が口いっぱいに広がります。贅沢なえびの風味と、パリパリとした食感が絶妙にマッチ。"
           />
