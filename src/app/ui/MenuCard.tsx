@@ -10,8 +10,8 @@ interface MenuCardInterface {
 
 const MenuCard = (params: MenuCardInterface) => {
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      <CardHeader title={params.title} />
+    <Card sx={{ maxWidth: 350, margin: "0 auto" }}>
+      <CardHeader title={params.title} sx={{ textAlign: "center" }} />
       <CardMedia>
         <Image
           src={params.src}

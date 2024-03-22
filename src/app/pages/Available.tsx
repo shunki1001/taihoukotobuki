@@ -1,48 +1,80 @@
-import { Table, Container, Grid } from '@mui/material'
-import React from 'react'
+import { Table, Container, Grid, Box } from "@mui/material";
+import React from "react";
 
 const Available = () => {
   return (
-    <Container
+    <Grid
+      container
+      spacing={6}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         pt: { xs: 14, sm: 20 },
         pb: { xs: 8, sm: 12 },
+        px: 1,
+        background: "rgba(240,240,240,1)",
+        color: "black",
       }}
     >
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={6}>
-        <Table aria-label="basic table">
-          <tbody>
-            <tr>
-              <td>営業時間</td>
-              <td>159</td>
-            </tr>
-            <tr>
-              <td>Ice cream sandwich</td>
-              <td>237</td>
-            </tr>
-            <tr>
-              <td>Eclair</td>
-              <td>262</td>
-            </tr>
-            <tr>
-              <td>Cupcake</td>
-              <td>305</td>
-            </tr>
-            <tr>
-              <td>Gingerbread</td>
-              <td>356</td>
-            </tr>
-          </tbody>
-        </Table>
+      <Grid item xs={3} sm={3}>
+        <Box
+          sx={{
+            writingMode: "vertical-rl",
+            margin: "0 auto",
+            fontSize: "1.4em",
+          }}
+        >
+          店舗情報
+        </Box>
+      </Grid>
+      <Grid item xs={9} sm={9}>
+        <Grid container gap={2}>
+          <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
+            大宝寿の店
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
+          >
+            先代は、〇〇年開業。昨年、先代から受け継ぎ、2024年1月28日にリニューアルオープン
+          </Grid>
+          <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
+            住所
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
+          >
+            愛知県名古屋市熱田区大宝一丁目１－１ ヴェルクレートＡ棟
+          </Grid>
+          <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
+            営業日
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
+          >
+            【月/火/木～土】11:00-17:00 【日/水】定休日
+          </Grid>
+          <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
+            アクセス
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
+          >
+            名古屋市営地下鉄日比野駅4番出口　徒歩1分
+          </Grid>
         </Grid>
       </Grid>
-    </Container>
-    
-  )
-}
+    </Grid>
+  );
+};
 
-export default Available
+export default Available;

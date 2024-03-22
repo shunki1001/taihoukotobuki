@@ -1,17 +1,24 @@
 // src/theme.ts
-'use client';
-import { Roboto } from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
+"use client";
+import { Roboto } from "next/font/google";
+import { createTheme } from "@mui/material/styles";
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+export const fontFamily = [
+  "Noto Sans JP",
+  "Roboto",
+  "Helvetica",
+  "Arial",
+  "sans-serif",
+].join(",");
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#a74535",
+    },
+  },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: fontFamily,
   },
 });
 
