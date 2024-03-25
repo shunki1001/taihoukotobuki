@@ -1,20 +1,16 @@
 "use client";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
+import { Box, Button, MenuItem } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
-import router from "../router/router";
-import { RouterInterface } from "../router/router";
+
+import AppBar from "@mui/material/AppBar";
+import Divider from "@mui/material/Divider";
+import React from "react";
+import router, { RouterInterface } from "../router/router";
 import Image from "next/image";
 
-import noren from "../../../public/img/noren.svg";
+import logo from "../../../public/img/logo.png";
 
 const logoStyle = {
   width: "140px",
@@ -49,7 +45,7 @@ function AppAppBar() {
         sx={{
           background: "#fffbd4",
           width: "100vw",
-          height: "50vh",
+          height: "40vh",
           position: "absolute",
           borderRadius: "0px 0px 1vh 1vh",
           zIndex: "-5",
@@ -59,10 +55,11 @@ function AppAppBar() {
         variant="regular"
         sx={(theme) => ({
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "space-between",
           flexShrink: 0,
           borderRadius: "999px",
+          pt: { xs: 1, sm: 2 },
         })}
       >
         <Box
@@ -70,16 +67,17 @@ function AppAppBar() {
             flexGrow: 1,
             display: "flex",
             alignItems: "flex-start",
+            color: "#a74535",
+            fontWeight: "bold",
             ml: "-18px",
             px: 0,
           }}
         >
           <p
             style={{
-              color: "#a74535",
               paddingLeft: "1em",
-              fontWeight: "bold",
               writingMode: "vertical-rl",
+              fontSize: "1.4em",
             }}
           >
             大宝寿
@@ -92,21 +90,50 @@ function AppAppBar() {
               flexGrow: 1,
             }}
           ></Box>
-          <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-            {router.map((item: RouterInterface) => {
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              pr: 2,
+            }}
+          >
+            {router.map((item: RouterInterface, index: number) => {
               return (
-                <MenuItem
-                  onClick={() => scrollToSection(item.id)}
-                  sx={{ py: "6px", px: "12px", writingMode: "vertical-rl" }}
-                  key={item.id}
-                >
-                  {item.name}
-                </MenuItem>
+                <>
+                  {index == 0 ? (
+                    <MenuItem
+                      onClick={() => scrollToSection(item.id)}
+                      sx={{
+                        fontWeight: "bold",
+                        py: 1,
+                        px: 2,
+                        writingMode: "vertical-rl",
+                        borderLeft: "1px solid #a74535",
+                        borderRight: "1px solid #a74535",
+                      }}
+                      key={item.id}
+                    >
+                      {item.name}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem
+                      onClick={() => scrollToSection(item.id)}
+                      sx={{
+                        fontWeight: "bold",
+                        py: 1,
+                        px: 2,
+                        writingMode: "vertical-rl",
+                        borderRight: "1px solid #a74535",
+                      }}
+                      key={item.id}
+                    >
+                      {item.name}
+                    </MenuItem>
+                  )}
+                </>
               );
             })}
           </Box>
         </Box>
-
         <Box sx={{ display: { xs: "", sm: "none" } }}>
           <Button
             variant="text"
@@ -149,6 +176,15 @@ function AppAppBar() {
           </Drawer>
         </Box>
       </Toolbar>
+      <Box sx={{ textAlign: "center" }}>
+        <Image
+          src={logo}
+          height={150}
+          width={150}
+          alt="top view"
+          style={{ margin: "2em 0" }}
+        />
+      </Box>
     </Box>
   );
 }
