@@ -37,7 +37,7 @@ const Available = () => {
                 md={8}
                 sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
               >
-                先代は、〇〇年開業。昨年、先代から受け継ぎ、2024年1月28日にリニューアルオープン
+                〇〇年開業。先代から受け継ぎ、2024年1月28日にリニューアルオープン
               </Grid>
               <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
                 住所

@@ -11,7 +11,6 @@ interface MenuCardInterface {
 const MenuCard = (params: MenuCardInterface) => {
   return (
     <Card sx={{ maxWidth: 350, margin: "0 auto" }}>
-      <CardHeader title={params.title} sx={{ textAlign: "center" }} />
       <CardMedia>
         <Image
           src={params.src}
@@ -20,7 +19,9 @@ const MenuCard = (params: MenuCardInterface) => {
           alt="Picture of the author"
         />
       </CardMedia>
-      <CardContent>{params.content}</CardContent>
+      <CardContent sx={{ textAlign: "center", fontSize: "1.4em" }}>
+        {params.title}
+      </CardContent>
     </Card>
   );
 };
