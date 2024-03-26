@@ -21,7 +21,7 @@ const router: RouterInterface[] = [
     name: "アクセス",
   },
   {
-    id: "contact",
+    id: "footer",
     name: "お問い合わせ",
   },
 ];

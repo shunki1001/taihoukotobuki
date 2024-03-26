@@ -11,6 +11,7 @@ import router, { RouterInterface } from "../router/router";
 import Image from "next/image";
 
 import logo from "../../../public/img/logo.png";
+import Link from "next/link";
 
 const logoStyle = {
   width: "140px",
@@ -73,15 +74,17 @@ function AppAppBar() {
             px: 0,
           }}
         >
-          <p
-            style={{
-              paddingLeft: "1em",
-              writingMode: "vertical-rl",
-              fontSize: "1.4em",
-            }}
-          >
-            大宝寿
-          </p>
+          <Link href="/">
+            <p
+              style={{
+                paddingLeft: "1em",
+                writingMode: "vertical-rl",
+                fontSize: "1.4em",
+              }}
+            >
+              大宝寿
+            </p>
+          </Link>
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
