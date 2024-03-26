@@ -20,10 +20,10 @@ const About = () => {
       id="about"
     >
       <Container>
-        <Box
-          sx={{
-            mb: 20,
-            pt: "2em",
+        <p
+          style={{
+            marginBottom: "2em",
+            paddingTop: "2em",
             color: "#a74535",
             fontSize: "2em",
             fontWeight: 700,
@@ -32,7 +32,7 @@ const About = () => {
           }}
         >
           寿が集まる店
-        </Box>
+        </p>
         <Grid
           container
           sx={{
