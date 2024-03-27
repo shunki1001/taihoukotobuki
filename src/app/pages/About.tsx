@@ -4,6 +4,7 @@ import Image from "next/image";
 import store_front from "../../../public/img/DSC00133.jpg";
 import kitchen from "../../../public/img/DSC00310.jpg";
 import master from "../../../public/img/DSC00159.jpg";
+import teppan from "../../../public/img/teppan.jpg";
 
 const About = () => {
   return (
@@ -77,7 +78,7 @@ const About = () => {
               alt="Picture of the author"
             />
           </Grid>
-          <Grid item xs={0} sm={3}></Grid>
+          <Grid item xs={0} sm={1}></Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 7 }}>
             <Image
               src={master}
@@ -85,7 +86,17 @@ const About = () => {
               alt="Picture of the author"
             />
           </Grid>
-          <Grid item xs={0} sm={3}></Grid>
+          <Grid item xs={0} sm={5}></Grid>
+          <Grid item xs={12} sm={0} sx={{ height: "10vh" }}></Grid>
+          <Grid item xs={0} sm={4}></Grid>
+          <Grid item xs={12} sm={6} sx={{ mt: 7 }}>
+            <Image
+              src={teppan}
+              layout="responsive"
+              alt="Picture of the author"
+            />
+          </Grid>
+          <Grid item xs={0} sm={2}></Grid>
         </Grid>
         <Box
           sx={{
