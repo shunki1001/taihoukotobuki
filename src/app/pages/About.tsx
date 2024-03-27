@@ -27,18 +27,20 @@ const About = () => {
             mb: { xs: 32, sm: 48 },
           }}
         >
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={12} sx={{ textAlign: "center" }}>
             <p
               style={{
+                display: "inline-block",
+                whiteSpace: "pre",
                 paddingBottom: "2em",
                 paddingTop: "2em",
                 color: "#a74535",
                 fontSize: "2em",
                 fontWeight: 700,
-                textAlign: "center",
+                writingMode: "vertical-rl",
               }}
             >
-              <span style={{ writingMode: "vertical-rl" }}>寿が集まる店</span>
+              寿が集まる店
             </p>
           </Grid>
           <Grid item xs={12} sm={6}>
