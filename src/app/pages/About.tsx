@@ -35,11 +35,10 @@ const About = () => {
                 color: "#a74535",
                 fontSize: "2em",
                 fontWeight: 700,
-                writingMode: "vertical-rl",
-                margin: "0 auto",
+                textAlign: "center",
               }}
             >
-              寿が集まる店
+              <span style={{ writingMode: "vertical-rl" }}>寿が集まる店</span>
             </p>
           </Grid>
           <Grid item xs={12} sm={6}>
