@@ -20,19 +20,6 @@ const About = () => {
       id="about"
     >
       <Container>
-        <p
-          style={{
-            marginBottom: "2em",
-            paddingTop: "2em",
-            color: "#a74535",
-            fontSize: "2em",
-            fontWeight: 700,
-            writingMode: "vertical-rl",
-            margin: "0 auto",
-          }}
-        >
-          寿が集まる店
-        </p>
         <Grid
           container
           sx={{
@@ -40,6 +27,21 @@ const About = () => {
             mb: { xs: 32, sm: 48 },
           }}
         >
+          <Grid item xs={12} sm={12}>
+            <p
+              style={{
+                paddingBottom: "2em",
+                paddingTop: "2em",
+                color: "#a74535",
+                fontSize: "2em",
+                fontWeight: 700,
+                writingMode: "vertical-rl",
+                margin: "0 auto",
+              }}
+            >
+              寿が集まる店
+            </p>
+          </Grid>
           <Grid item xs={12} sm={6}>
             <Image
               src={store_front}
