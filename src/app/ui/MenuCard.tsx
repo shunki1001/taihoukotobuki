@@ -19,8 +19,9 @@ const MenuCard = (params: MenuCardInterface) => {
           alt="Picture of the author"
         />
       </CardMedia>
-      <CardContent sx={{ textAlign: "center", fontSize: "1.4em" }}>
-        {params.title}
+      <CardContent>
+        <p style={{ fontSize: "1.4em" }}>{params.title}</p>
+        <p style={{ fontSize: "1em" }}>{params.content}</p>
       </CardContent>
     </Card>
   );
