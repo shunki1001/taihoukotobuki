@@ -56,6 +56,11 @@ const Menu = () => {
               content="中サイズ¥700　　大サイズ¥900"
             />
           </Grid>
+          <Grid item xs={0} md={2}></Grid>
+          <Grid item xs={12} md={8}>
+            <p>上記以外にも、アルコール類あります。</p>
+          </Grid>
+          <Grid item xs={0} md={2}></Grid>
         </Grid>
       </Container>
     </Box>

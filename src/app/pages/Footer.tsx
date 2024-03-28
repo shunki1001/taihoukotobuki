@@ -47,7 +47,7 @@ const Footer = () => {
           <IconButton
             onClick={() => {
               window.location.href =
-                "https://www.instagram.com/taihoukotobuki/";
+                "https://www.facebook.com/profile.php?id=100037388893472";
             }}
           >
             <FacebookIcon color="primary" fontSize="large" />
@@ -61,7 +61,7 @@ const Footer = () => {
             <InstagramIcon color="primary" fontSize="large" />
           </IconButton>
         </Stack>
-        <p style={{ marginTop: "2em", fontSize: "small" }}>2024 大宝寿</p>
+        <p style={{ marginTop: "2em", fontSize: "small" }}>2024 寿の店</p>
       </Container>
     </Box>
   );

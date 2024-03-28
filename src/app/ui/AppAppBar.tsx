@@ -82,7 +82,7 @@ function AppAppBar() {
                 fontSize: "1.4em",
               }}
             >
-              大宝寿
+              寿の店
             </p>
           </Link>
           <Box

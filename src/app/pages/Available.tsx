@@ -29,7 +29,7 @@ const Available = () => {
           <Grid item xs={9} sm={9}>
             <Grid container gap={2}>
               <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
-                大宝寿の店
+                寿の店
               </Grid>
               <Grid
                 item
@@ -37,7 +37,7 @@ const Available = () => {
                 md={8}
                 sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
               >
-                〇〇年開業。先代から受け継ぎ、2024年1月28日にリニューアルオープン
+                先代から受け継ぎ、2024年1月28日にリニューアルオープン
               </Grid>
               <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
                 住所
@@ -59,7 +59,7 @@ const Available = () => {
                 md={8}
                 sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
               >
-                【月/火/木～土】11:00-17:00 【日/水】定休日
+                【月/火/木～土】11:00-17:00(変動あり) 【日/水】定休日
               </Grid>
               <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
                 アクセス

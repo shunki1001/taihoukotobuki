@@ -6,7 +6,7 @@ export interface RouterInterface {
 const router: RouterInterface[] = [
   {
     id: "about",
-    name: "大宝寿の店とは",
+    name: "寿の店とは",
   },
   {
     id: "menu",

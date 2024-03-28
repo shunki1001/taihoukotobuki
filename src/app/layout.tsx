@@ -8,8 +8,8 @@ import theme from "../theme";
 import { CssBaseline } from "@mui/material";
 
 export const metadata: Metadata = {
-  title: "大宝寿",
-  description: "名古屋市熱田区にある大宝寿のHPです。",
+  title: "寿の店",
+  description: "名古屋市熱田区にある寿の店のHPです。",
 };
 
 export default function RootLayout({
