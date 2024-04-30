@@ -4,6 +4,7 @@ import Available from "./pages/Available";
 import Footer from "./pages/Footer";
 import Menu from "./pages/Menu";
 import Top from "./pages/Top";
+import Youtube from "./pages/Youtube";
 import AppAppBar from "./ui/AppAppBar";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <AppAppBar />
       <About />
       <Menu />
+      <Youtube />
       <Available />
       <Access />
       <Footer />
