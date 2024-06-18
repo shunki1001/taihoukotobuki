@@ -8,7 +8,7 @@ import theme from "../theme";
 import { CssBaseline } from "@mui/material";
 
 export const metadata: Metadata = {
-  title: "寿の店",
+  title: "寿の店 |名古屋市熱田区にある鉄板焼きの店",
   description:
     "名古屋市熱田区にある「寿の店」の公式HPです。寿の店は、先代から受け継ぐ鉄板プレス機を使ってその場で焼いた、ぺらっとパリッとしたせんべい、ピリ辛のイカ焼きを提供しています。",
   openGraph: {

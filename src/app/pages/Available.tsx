@@ -48,7 +48,7 @@ const Available = () => {
                 md={8}
                 sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
               >
-                愛知県名古屋市熱田区大宝一丁目１－１ ヴェルクレートＡ棟
+                愛知県名古屋市熱田区大宝一丁目１－１ ヴェルクレート日比野Ａ棟
               </Grid>
               <Grid item xs={12} md={4} sx={{ fontWeight: 700 }}>
                 営業日
