@@ -4,8 +4,18 @@ import {
 } from "../../../lib/contentfulContentsApi";
 import Link from 'next/link';
 
+interface PostType {
+  id: string;
+  title: string;
+  status: string;
+  date: string;
+  slug: string;
+  content: string;
+  publishedDate?: string;
+}
+
 const BlogListPage: React.FC = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,9 +23,16 @@ const BlogListPage: React.FC = () => {
       const loadPosts = async () => {
         try {
           const fetchedPosts = await fetchPostsFromContentful(); // 非同期で投稿を取得
-          setPosts(fetchedPosts); // 取得した投稿をステートにセット
+          // fetchedPostsにはpublishedDateがないため、dateをpublishedDateとして扱う
+          const postsWithPublishedDate = fetchedPosts.map(post => ({
+            ...post,
+            publishedDate: post.date,
+          }));
+          setPosts(postsWithPublishedDate); // 取得した投稿をステートにセット
+          setLoading(false);
         } catch (error) {
           console.error("投稿の取得に失敗しました:", error);
+          setLoading(false);
           // エラーハンドリング (例: エラーメッセージをステートにセットするなど)
         }
       };
@@ -42,7 +59,7 @@ const BlogListPage: React.FC = () => {
             <Link href={`/blog/${post.slug}`}>
               <a>{post.title}</a>
             </Link>
-            <span> - {new Date(post.publishedDate).toLocaleDateString()}</span>
+            <span> - {new Date(post.publishedDate ?? post.date).toLocaleDateString()}</span>
           </li>
         ))}
       </ul>
