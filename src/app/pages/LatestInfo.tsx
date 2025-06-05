@@ -3,9 +3,7 @@ import { Container, Box, Typography, Grid, Paper} from '@mui/material'
 import React, {useState, useEffect} from 'react'
 
 import {
-  fetchBlogPostById,
   fetchPostsFromContentful,
-  BlogFormData,
 } from "../../lib/contentfulContentsApi";
 import {
   fetchIrregularHours,
