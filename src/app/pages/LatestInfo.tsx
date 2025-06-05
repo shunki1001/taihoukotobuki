@@ -10,9 +10,17 @@ import {
   IrregularHour,
 } from "../../lib/contentfulCalendarApi";
 
+interface PostType {
+  id: string;
+  title: string;
+  status: string;
+  date: string;
+  slug: string;
+  content: string;
+}
 
 const LatestInfo = () => {
-      const [latestPosts, setLatestPosts] = useState([]);
+  const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [irregularHours, setIrregularHours] = useState<IrregularHour[]>([]);
 
   useEffect(() => {

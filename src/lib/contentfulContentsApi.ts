@@ -41,7 +41,7 @@ export const fetchBlogPostById = async (id: string): Promise<BlogFormData | null
 export async function fetchPostsFromContentful() {
   const response = await contentfulClient.getEntries<any>({
     content_type: 'pageBlogPost',
-    order: '-fields.publishedDate',
+    order: ['-fields.publishedDate'],
   });
 
   return response.items.map((item: any) => {
