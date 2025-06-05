@@ -1,5 +1,5 @@
-import { Box, Container, Grid } from "@mui/material";
-import * as React from "react";
+import React from "react";
+import { Box, Container } from "@mui/material";
 import Image from "next/image";
 import top_view from "../../../public/img/DSC00179.jpg";
 

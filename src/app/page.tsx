@@ -6,6 +6,7 @@ import Menu from "./pages/Menu";
 import Top from "./pages/Top";
 import Youtube from "./pages/Youtube";
 import AppAppBar from "./ui/AppAppBar";
+import LatestInfo from "./pages/LatestInfo";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Menu />
       <Youtube />
       <Available />
+      <LatestInfo />
       <Access />
       <Footer />
     </main>
