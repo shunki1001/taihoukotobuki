@@ -1,13 +1,13 @@
+"use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import {
   fetchBlogPostById,
   BlogFormData
 } from "../../../lib/contentfulContentsApi";
 
 const BlogPostPage: React.FC = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+const { slug } = useParams();
   const [post, setPost] = useState<BlogFormData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +28,7 @@ const BlogPostPage: React.FC = () => {
     if (typeof slug === 'string') {
       loadPosts(slug);
     }
+    console.log(slug)
 
     return () => {};
   }, [slug]);
