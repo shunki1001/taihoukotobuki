@@ -1,6 +1,7 @@
 "use client";
 import { Container, Box, Typography, Grid, Paper} from '@mui/material'
 import React, {useState, useEffect} from 'react'
+import Link from 'next/link';
 
 import {
   fetchPostsFromContentful,
@@ -71,14 +72,16 @@ const LatestInfo = () => {
                 <Grid container spacing={2}>
                   {latestPosts.map((post) => (
                     <Grid item xs={12} sm={6} md={4} key={post.id}>
-                      <Paper elevation={3} sx={{ p: 2 }}>
-                        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
-                          {post.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {post.status} - {post.date}
-                        </Typography>
-                      </Paper>
+                      <Link href={`/blog/${post.slug}`} passHref>
+                        <Paper elevation={3} sx={{ p: 2 }}>
+                          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+                            {post.title}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {post.status} - {post.date}
+                          </Typography>
+                        </Paper>
+                      </Link>
                     </Grid>
                   ))}
                 </Grid>

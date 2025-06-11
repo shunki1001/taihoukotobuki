@@ -1,7 +1,8 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import {
   fetchPostsFromContentful
-} from "../../../lib/contentfulContentsApi";
+} from "../../lib/contentfulContentsApi";
 import Link from 'next/link';
 
 interface PostType {
@@ -57,7 +58,7 @@ const BlogListPage: React.FC = () => {
         {posts.map((post) => (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-              <a>{post.title}</a>
+              {post.title}
             </Link>
             <span> - {new Date(post.publishedDate ?? post.date).toLocaleDateString()}</span>
           </li>
