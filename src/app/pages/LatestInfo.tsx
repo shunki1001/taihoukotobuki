@@ -10,9 +10,17 @@ import {
   IrregularHour,
 } from "../../lib/contentfulCalendarApi";
 
+interface PostType {
+  id: string;
+  title: string;
+  status: string;
+  date: string;
+  slug: string;
+  content: string;
+}
 
 const LatestInfo = () => {
-      const [latestPosts, setLatestPosts] = useState([]);
+  const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [irregularHours, setIrregularHours] = useState<IrregularHour[]>([]);
 
   useEffect(() => {
@@ -90,7 +98,9 @@ const LatestInfo = () => {
                 </Typography>
                 <Grid container spacing={2}>
                 {irregularHours.length === 0 && (
-                    <Typography>お知らせはありません。</Typography>
+                  <Grid item xs={12} sm={4}>
+                    <Typography sx={{mt:2, mb:2}}>営業時間の変更はありません</Typography>
+                  </Grid>
                 )}
                 {irregularHours.map((hour, index) => (
                     <Grid item xs={12} sm={4} key={index}>

@@ -17,7 +17,7 @@ export const fetchIrregularHours = async (): Promise<IrregularHour[]> => {
       content_type: 'openingHours',
       order: ['fields.openingTime'],
     });
-    return response.items.map((item: { fields: Record<string, any>; sys: { id: string } }) => {
+    const irregularHours = response.items.map((item: { fields: Record<string, any>; sys: { id: string } }) => {
       const fields = item.fields;
       let dateStr = '';
       if (fields.openingTime) {
@@ -38,6 +38,8 @@ export const fetchIrregularHours = async (): Promise<IrregularHour[]> => {
         notes: typeof fields.notes === 'string' ? fields.notes : '',
       };
     });
+    const todayStr = new Date().toISOString().split('T')[0];
+    return irregularHours.filter(item => item.date >= todayStr);
   } catch (error) {
     console.error('Contentful fetch error:', error);
     return [];
