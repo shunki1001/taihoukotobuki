@@ -14,12 +14,17 @@ const hasPublishedAt = (sys: unknown): sys is { publishedAt: string } => {
 };
 
 // Fetch a blog post by ID and map to BlogFormData
-export const fetchBlogPostById = async (id: string): Promise<BlogFormData | null> => {
+export const fetchBlogPostById = async (slug: string): Promise<BlogFormData | null> => {
   try {
-    const entry = await contentfulClient.getEntry(id);
+    const response = await contentfulClient.getEntries({
+      content_type: 'pageBlogPost',
+      'fields.slug': slug,
+      limit: 1
+    });
 
-    if (!entry || !entry.fields) return null;
+    if (!response.items || response.items.length === 0) return null;
 
+    const entry = response.items[0];
     const fields = entry.fields;
 
     return {
@@ -30,8 +35,7 @@ export const fetchBlogPostById = async (id: string): Promise<BlogFormData | null
       status: hasPublishedAt(entry.sys) ? 'published' : 'draft',
     };
   } catch (error) {
-     
-    console.error('Error fetching blog post by ID:', error);
+    console.error('Error fetching blog post by slug:', error);
     return null;
   }
 };
