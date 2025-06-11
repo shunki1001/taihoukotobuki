@@ -1,9 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import {
-  fetchPostsFromContentful
-} from "../../lib/contentfulContentsApi";
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActionArea from '@mui/material/CardActionArea';
 import Link from 'next/link';
+import { fetchPostsFromContentful } from "../../lib/contentfulContentsApi";
 
 interface PostType {
   id: string;
@@ -20,51 +24,63 @@ const BlogListPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      // 非同期関数を定義
-      const loadPosts = async () => {
-        try {
-          const fetchedPosts = await fetchPostsFromContentful(); // 非同期で投稿を取得
-          // fetchedPostsにはpublishedDateがないため、dateをpublishedDateとして扱う
-          const postsWithPublishedDate = fetchedPosts.map(post => ({
-            ...post,
-            publishedDate: post.date,
-          }));
-          setPosts(postsWithPublishedDate); // 取得した投稿をステートにセット
-          setLoading(false);
-        } catch (error) {
-          console.error("投稿の取得に失敗しました:", error);
-          setLoading(false);
-          // エラーハンドリング (例: エラーメッセージをステートにセットするなど)
-        }
-      };
-      // 非同期関数を呼び出し
-      loadPosts();
-
-      return () => {};
-    }, []);
+    const loadPosts = async () => {
+      try {
+        const fetchedPosts = await fetchPostsFromContentful();
+        const postsWithPublishedDate = fetchedPosts.map(post => ({
+          ...post,
+          publishedDate: post.date,
+        }));
+        setPosts(postsWithPublishedDate);
+        setLoading(false);
+      } catch (error) {
+        console.error("投稿の取得に失敗しました:", error);
+        setLoading(false);
+      }
+    };
+    loadPosts();
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Container sx={{ mt: 4 }}>
+        <Typography variant="h5">Loading...</Typography>
+      </Container>
+    );
   }
 
   if (posts.length === 0) {
-    return <div>ブログ記事がありません。</div>;
+    return (
+      <Container sx={{ mt: 4 }}>
+        <Typography variant="h6">ブログ記事がありません。</Typography>
+      </Container>
+    );
   }
 
   return (
-    <div>
-      <h1>ブログ記事一覧</h1>
-      <ul>
+    <Container sx={{ mt: 4 }}>
+      <Typography variant="h3" component="h1" align="center" gutterBottom>
+        ブログ記事一覧
+      </Typography>
+      <Grid container spacing={3}>
         {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>
-              {post.title}
-            </Link>
-            <span> - {new Date(post.publishedDate ?? post.date).toLocaleDateString()}</span>
-          </li>
+          <Grid item xs={12} sm={6} md={4} key={post.slug}>
+            <Card>
+              <CardActionArea component={Link} href={`/blog/${post.slug}`}>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {new Date(post.publishedDate ?? post.date).toLocaleDateString()}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
         ))}
-      </ul>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
