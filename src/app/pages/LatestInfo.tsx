@@ -64,33 +64,25 @@ const LatestInfo = () => {
         id="available"
     >
         <Container>
-            {/* <Box sx={{ width: "100%", mt: 4 }}>
+            <Box sx={{ width: "100%", mt: 4 }}>
                 <Typography variant="h5" gutterBottom>
                 最新のブログ記事
                 </Typography>
                 <Grid container spacing={2}>
-                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                    {latestPosts.map((post: { id: string; title: string; status: string; date: string }) => (
-                    <tr key={post.id}>
-                        <td className="px-4 py-3 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{post.title}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 sm:hidden">{post.status} - {post.date}</div>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 hidden sm:table-cell">
-                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            post.status === '公開済み' ? 'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100'
-                        }`}>
-                            {post.status}
-                        </span>
-                        </td>
-                        <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 hidden md:table-cell">
-                        {post.date}
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
+                  {latestPosts.map((post) => (
+                    <Grid item xs={12} sm={6} md={4} key={post.id}>
+                      <Paper elevation={3} sx={{ p: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+                          {post.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {post.status} - {post.date}
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ))}
                 </Grid>
-            </Box> */}
+            </Box>
 
             <Box sx={{ width: "100%", mt: 4 }}>
                 <Typography variant="h5" gutterBottom>
