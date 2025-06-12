@@ -12,14 +12,17 @@ import { useParams } from "next/navigation";
 import {
   fetchBlogPostById,
   BlogFormData,
+  getAssetUrl,
 } from "../../../lib/contentfulContentsApi";
 import Header from "../Header";
 import Footer from "@/app/pages/Footer";
+import Image from "next/image";
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogFormData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const loadPost = async (slug: string) => {
@@ -37,6 +40,19 @@ const BlogPostPage: React.FC = () => {
       loadPost(slug);
     }
   }, [slug]);
+
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      if (post && post.imageAssetId) {
+        const url = await getAssetUrl(post.imageAssetId);
+        setImageUrl(url ?? null);
+      } else {
+        setImageUrl(null);
+      }
+    };
+    if (!post) return;
+    fetchImageUrl();
+  }, [post]);
 
   if (loading) {
     return (
@@ -71,6 +87,15 @@ const BlogPostPage: React.FC = () => {
             <Typography variant="h3" component="h1" gutterBottom>
               {post.title}
             </Typography>
+            {imageUrl ? (
+              <Image
+                src={imageUrl}
+                alt={post.title}
+                width={1200}
+                height={800}
+                style={{ width: "100%", height: "auto" }}
+              />
+            ) : null}
             <Typography variant="subtitle1" color="text.secondary" gutterBottom>
               公開日: {new Date(post.publishedDate).toLocaleDateString()}
             </Typography>
