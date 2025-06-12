@@ -1,14 +1,16 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActionArea from '@mui/material/CardActionArea';
-import Link from 'next/link';
-import Fab from '@mui/material/Fab';
-import HomeIcon from '@mui/icons-material/Home';
+"use client";
+import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
+import Link from "next/link";
+import Fab from "@mui/material/Fab";
+import HomeIcon from "@mui/icons-material/Home";
+import Header from "./Header";
+import Footer from "../pages/Footer";
 import { fetchPostsFromContentful } from "../../lib/contentfulContentsApi";
 
 interface PostType {
@@ -45,25 +47,37 @@ const BlogListPage: React.FC = () => {
 
   if (loading) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h5">Loading...</Typography>
-      </Container>
+      <>
+        <Header />
+        <Container sx={{ mt: 4 }}>
+          <Typography variant="h5">Loading...</Typography>
+        </Container>
+        <Footer />
+      </>
     );
   }
 
   if (posts.length === 0) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h6">ブログ記事がありません。</Typography>
-      </Container>
+      <>
+        <Header />
+        <Container sx={{ mt: 4 }}>
+          <Typography variant="h6">ブログ記事がありません。</Typography>
+        </Container>
+        <Footer />
+      </>
     );
   }
 
   return (
     <>
+      <Header />
       <Container sx={{ mt: 4 }}>
-        <Typography variant="h3" component="h1" align="center" gutterBottom>
-          ブログ記事一覧
+        <Typography variant="h4" component="h1" align="center" gutterBottom>
+          最新記事一覧
+        </Typography>
+        <Typography variant="body1" align="center" gutterBottom>
+          寿の店の店主が気ままに情報を発信するブログです。
         </Typography>
         <Grid container spacing={3}>
           {posts.map((post) => (
@@ -88,11 +102,12 @@ const BlogListPage: React.FC = () => {
         component={Link}
         href="/"
         color="primary"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
         aria-label="top"
       >
         <HomeIcon />
       </Fab>
+      <Footer />
     </>
   );
 };

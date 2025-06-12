@@ -10,6 +10,8 @@ import Fab from '@mui/material/Fab';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useParams } from 'next/navigation';
 import { fetchBlogPostById, BlogFormData } from "../../../lib/contentfulContentsApi";
+import Header from '../Header';
+import Footer from '@/app/pages/Footer';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams();
@@ -35,22 +37,31 @@ const BlogPostPage: React.FC = () => {
 
   if (loading) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h5">Loading...</Typography>
-      </Container>
+      <>
+        <Header />
+        <Container sx={{ mt: 4 }}>
+          <Typography variant="h5">Loading...</Typography>
+        </Container>
+        <Footer />
+      </>
     );
   }
 
   if (!post) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h6">記事が見つかりません。</Typography>
-      </Container>
+      <>
+        <Header />
+        <Container sx={{ mt: 4 }}>
+          <Typography variant="h6">記事が見つかりません。</Typography>
+        </Container>
+        <Footer />
+      </>
     );
   }
 
   return (
     <>
+      <Header />
       <Container sx={{ mt: 4 }}>
         <Card>
           <CardContent>
@@ -78,6 +89,7 @@ const BlogPostPage: React.FC = () => {
       >
         <ArrowBackIcon />
       </Fab>
+      <Footer />
     </>
   );
 };
