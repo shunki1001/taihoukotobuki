@@ -91,8 +91,8 @@ const BlogPostPage: React.FC = () => {
               <Image
                 src={imageUrl}
                 alt={post.title}
-                width={1200}
-                height={800}
+                width={900}
+                height={600}
                 style={{ width: "100%", height: "auto" }}
               />
             ) : null}
