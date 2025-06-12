@@ -1,17 +1,20 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-import Link from 'next/link';
-import Fab from '@mui/material/Fab';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useParams } from 'next/navigation';
-import { fetchBlogPostById, BlogFormData } from "../../../lib/contentfulContentsApi";
-import Header from '../Header';
-import Footer from '@/app/pages/Footer';
+"use client";
+import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import Link from "next/link";
+import Fab from "@mui/material/Fab";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useParams } from "next/navigation";
+import {
+  fetchBlogPostById,
+  BlogFormData,
+} from "../../../lib/contentfulContentsApi";
+import Header from "../Header";
+import Footer from "@/app/pages/Footer";
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams();
@@ -30,7 +33,7 @@ const BlogPostPage: React.FC = () => {
       }
     };
 
-    if (typeof slug === 'string') {
+    if (typeof slug === "string") {
       loadPost(slug);
     }
   }, [slug]);
@@ -84,7 +87,7 @@ const BlogPostPage: React.FC = () => {
         component={Link}
         href="/blog"
         color="primary"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
         aria-label="back to list"
       >
         <ArrowBackIcon />

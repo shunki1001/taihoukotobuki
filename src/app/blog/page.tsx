@@ -31,7 +31,7 @@ const BlogListPage: React.FC = () => {
     const loadPosts = async () => {
       try {
         const fetchedPosts = await fetchPostsFromContentful();
-        const postsWithPublishedDate = fetchedPosts.map(post => ({
+        const postsWithPublishedDate = fetchedPosts.map((post) => ({
           ...post,
           publishedDate: post.date,
         }));
@@ -89,7 +89,9 @@ const BlogListPage: React.FC = () => {
                       {post.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {new Date(post.publishedDate ?? post.date).toLocaleDateString()}
+                      {new Date(
+                        post.publishedDate ?? post.date
+                      ).toLocaleDateString()}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

@@ -4,7 +4,6 @@ import { Box, Button, MenuItem } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import AppBar from "@mui/material/AppBar";
 import Divider from "@mui/material/Divider";
 import React from "react";
 import router, { RouterInterface } from "../router/router";
@@ -12,12 +11,6 @@ import Image from "next/image";
 
 import logo from "../../../public/img/logo.png";
 import Link from "next/link";
-
-const logoStyle = {
-  width: "140px",
-  height: "auto",
-  cursor: "pointer",
-};
 
 function AppAppBar() {
   const [open, setOpen] = React.useState(false);
