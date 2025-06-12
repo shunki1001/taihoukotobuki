@@ -1,4 +1,5 @@
 import { contentfulClient } from "./contentfulClient";
+import type { Asset } from "contentful";
 
 export interface BlogFormData {
   slug: string;
@@ -6,6 +7,7 @@ export interface BlogFormData {
   title: string;
   content: string; // Markdown text
   status: "draft" | "published";
+  imageAssetId: string | null;
 }
 
 // Type guard to check if sys has publishedAt property
@@ -41,6 +43,16 @@ export const fetchBlogPostById = async (
       title: typeof fields.title === "string" ? fields.title : "",
       content: typeof fields.content === "string" ? fields.content : "",
       status: hasPublishedAt(entry.sys) ? "published" : "draft",
+      imageAssetId:
+        fields.imageAssetId &&
+        typeof fields.imageAssetId === "object" &&
+        "sys" in fields.imageAssetId &&
+        typeof fields.imageAssetId.sys === "object" &&
+        fields.imageAssetId.sys !== null &&
+        "id" in fields.imageAssetId.sys &&
+        typeof fields.imageAssetId.sys.id === "string"
+          ? fields.imageAssetId.sys.id
+          : null,
     };
   } catch (error) {
     console.error("Error fetching blog post by slug:", error);
@@ -66,6 +78,46 @@ export async function fetchPostsFromContentful() {
         : "",
       slug: fields.slug || "",
       content: fields.content || "",
+      imageAssetId:
+        fields.imageAssetId && fields.imageAssetId.sys
+          ? fields.imageAssetId.sys.id
+          : null,
     };
   });
+}
+
+/**
+ * アセットIDからアセットの完全なURLを取得します。
+ * @param assetId 取得したいアセットのID
+ * @returns アセットのURL文字列、または見つからない場合はnull
+ */
+export async function getAssetUrl(
+  assetId: string
+): Promise<string | undefined> {
+  try {
+    // client.getAssetメソッドでアセット情報を取得
+    const asset: Asset<undefined> = await contentfulClient.getAsset(assetId);
+
+    // アセット情報からURLを安全に取得
+    // オプショナルチェイニング(?.)を使い、プロパティが存在しない場合のエラーを防ぎます
+    const url = asset.fields.file?.url;
+
+    if (url) {
+      // ContentfulのAPIが返すURLはプロトコルが省略されているため、'https:'を付与
+      const fullUrl = `https:${url}`;
+      console.log(`取得したURL: ${fullUrl}`);
+      return fullUrl;
+    } else {
+      console.warn(
+        `アセットID '${assetId}' にファイルURLが見つかりませんでした。`
+      );
+      return undefined;
+    }
+  } catch (error) {
+    console.error(
+      `アセットID '${assetId}' の取得中にエラーが発生しました:`,
+      error
+    );
+    return undefined;
+  }
 }
