@@ -72,7 +72,7 @@ const BlogListPage: React.FC = () => {
   return (
     <>
       <Header />
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" component="h1" align="center" gutterBottom>
           最新記事一覧
         </Typography>

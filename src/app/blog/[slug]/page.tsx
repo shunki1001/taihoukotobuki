@@ -81,10 +81,10 @@ const BlogPostPage: React.FC = () => {
   return (
     <>
       <Header />
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ mt: 4, mb: 4 }}>
         <Card>
           <CardContent>
-            <Typography variant="h3" component="h1" gutterBottom>
+            <Typography variant="h4" component="h2" gutterBottom>
               {post.title}
             </Typography>
             {imageUrl ? (
