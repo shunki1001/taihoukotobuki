@@ -7,6 +7,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import Link from 'next/link';
+import Fab from '@mui/material/Fab';
+import HomeIcon from '@mui/icons-material/Home';
 import { fetchPostsFromContentful } from "../../lib/contentfulContentsApi";
 
 interface PostType {
@@ -58,29 +60,40 @@ const BlogListPage: React.FC = () => {
   }
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Typography variant="h3" component="h1" align="center" gutterBottom>
-        ブログ記事一覧
-      </Typography>
-      <Grid container spacing={3}>
-        {posts.map((post) => (
-          <Grid item xs={12} sm={6} md={4} key={post.slug}>
-            <Card>
-              <CardActionArea component={Link} href={`/blog/${post.slug}`}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {post.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {new Date(post.publishedDate ?? post.date).toLocaleDateString()}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Container sx={{ mt: 4 }}>
+        <Typography variant="h3" component="h1" align="center" gutterBottom>
+          ブログ記事一覧
+        </Typography>
+        <Grid container spacing={3}>
+          {posts.map((post) => (
+            <Grid item xs={12} sm={6} md={4} key={post.slug}>
+              <Card>
+                <CardActionArea component={Link} href={`/blog/${post.slug}`}>
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      {post.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {new Date(post.publishedDate ?? post.date).toLocaleDateString()}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+      <Fab
+        component={Link}
+        href="/"
+        color="primary"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        aria-label="top"
+      >
+        <HomeIcon />
+      </Fab>
+    </>
   );
 };
 

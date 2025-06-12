@@ -5,6 +5,9 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
+import Link from 'next/link';
+import Fab from '@mui/material/Fab';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useParams } from 'next/navigation';
 import { fetchBlogPostById, BlogFormData } from "../../../lib/contentfulContentsApi";
 
@@ -47,24 +50,35 @@ const BlogPostPage: React.FC = () => {
   }
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Card>
-        <CardContent>
-          <Typography variant="h3" component="h1" gutterBottom>
-            {post.title}
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-            公開日: {new Date(post.publishedDate).toLocaleDateString()}
-          </Typography>
-          <Box mt={2}>
-            {/* TODO: MarkdownをHTMLに変換して表示 */}
-            <Typography variant="body1" component="div">
-              {post.content}
+    <>
+      <Container sx={{ mt: 4 }}>
+        <Card>
+          <CardContent>
+            <Typography variant="h3" component="h1" gutterBottom>
+              {post.title}
             </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    </Container>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+              公開日: {new Date(post.publishedDate).toLocaleDateString()}
+            </Typography>
+            <Box mt={2}>
+              {/* TODO: MarkdownをHTMLに変換して表示 */}
+              <Typography variant="body1" component="div">
+                {post.content}
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Container>
+      <Fab
+        component={Link}
+        href="/blog"
+        color="primary"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        aria-label="back to list"
+      >
+        <ArrowBackIcon />
+      </Fab>
+    </>
   );
 };
 
