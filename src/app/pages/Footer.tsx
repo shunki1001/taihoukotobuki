@@ -1,14 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  Container,
-  Divider,
-  Grid,
-  Icon,
-  IconButton,
-  Stack,
-} from "@mui/material";
+import { Box, Container, Divider, IconButton, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
