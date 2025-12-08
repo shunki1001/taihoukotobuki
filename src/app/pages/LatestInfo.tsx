@@ -69,7 +69,7 @@ const LatestInfo = () => {
           </Typography>
           <Grid container spacing={2}>
             {latestPosts.map((post) => (
-              <Grid item xs={12} sm={6} md={4} key={post.id}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={post.id}>
                 <Link href={`/blog/${post.slug}`} passHref>
                   <Paper elevation={3} sx={{ p: 2 }}>
                     <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
@@ -91,14 +91,14 @@ const LatestInfo = () => {
           </Typography>
           <Grid container spacing={2}>
             {irregularHours.length === 0 && (
-              <Grid item xs={12} sm={4}>
+              <Grid size={{ xs: 12, sm: 4 }}>
                 <Typography sx={{ mt: 2, mb: 2 }}>
                   営業時間の変更はありません
                 </Typography>
               </Grid>
             )}
             {irregularHours.map((hour, index) => (
-              <Grid item xs={12} sm={4} key={index}>
+              <Grid size={{ xs: 12, sm: 4 }} key={index}>
                 <Paper sx={{ p: 2 }}>
                   <Typography variant="body1">
                     {hour.date}{" "}

@@ -28,7 +28,7 @@ const About = () => {
             mb: { xs: 32, sm: 48 },
           }}
         >
-          <Grid item xs={12} sm={12} sx={{ textAlign: "center" }}>
+          <Grid size={{ xs: 12, sm: 12 }} sx={{ textAlign: "center" }}>
             <p
               style={{
                 display: "inline-block",
@@ -44,7 +44,7 @@ const About = () => {
               寿が集まる店
             </p>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <Image
               src={store_front}
               layout="responsive"
@@ -52,51 +52,47 @@ const About = () => {
             />
           </Grid>
           <Grid
-            item
-            xs={12}
-            sm={6}
+            size={{ xs: 12, sm: 6 }}
             sx={{ px: 2, py: { xs: 1, sm: 6 }, zIndex: 0, lineHeight: 2 }}
           >
             誰でも気軽に立ち寄れるアットホームな雰囲気。地元の方々からも親しまれています。
             大宝１丁目１－１にある「寿」の店。
             みなさんが気軽に立ち寄れるお店でありたいと願っています。
           </Grid>
-          <Grid item xs={12} sm={0} sx={{ height: "48px" }}></Grid>
+          <Grid size={{ xs: 12, sm: 0 }} sx={{ height: "48px" }}></Grid>
           <Grid
-            item
-            xs={12}
-            sm={6}
+            size={{ xs: 12, sm: 6 }}
             sx={{ px: 2, py: { xs: 1, sm: 6 }, lineHeight: 1.75 }}
           >
             当店は鉄板プレス機を使用した料理が自慢。また、先代から受け継ぐ魔法の粉を使用した料理をお楽しみいただけます。
             ぱりぱりのせんべいやピリ辛のいかやきは、おやつはもちろんお酒のおつまみとしても最高。
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <Image
               src={kitchen}
               layout="responsive"
               alt="Picture of the author"
             />
           </Grid>
-          <Grid item xs={0} sm={1}></Grid>
-          <Grid item xs={12} sm={6} sx={{ mt: 7 }}>
+          <Grid size={{ xs: 0, sm: 1 }}></Grid>
+          <Grid size={{ xs: 12, sm: 6 }} sx={{ mt: 7 }}>
             <Image
               src={master}
               layout="responsive"
               alt="Picture of the author"
             />
           </Grid>
-          <Grid item xs={0} sm={5}></Grid>
-          <Grid item xs={12} sm={0} sx={{ height: "10vh" }}></Grid>
-          <Grid item xs={0} sm={4}></Grid>
-          <Grid item xs={12} sm={6} sx={{ mt: 7 }}>
+          <Grid size={{ xs: 0, sm: 5 }}></Grid>
+          <Grid size={{ xs: 12, sm: 0 }} sx={{ height: "10vh" }}></Grid>
+          <Grid size={{ xs: 0, sm: 4 }}></Grid>
+          <Grid size={{ xs: 12, sm: 6 }} sx={{ mt: 7 }}>
             <Image
               src={teppan}
               layout="responsive"
               alt="Picture of the author"
             />
           </Grid>
-          <Grid item xs={0} sm={2}></Grid>
+          <Grid size={{ xs: 0, sm: 2 }}></Grid>
         </Grid>
         <Box
           sx={{

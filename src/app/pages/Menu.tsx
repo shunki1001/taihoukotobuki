@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import MenuCard from "../ui/MenuCard";
 
 import ikayaki from "../../../public/img/ikayaki_v3.png";
@@ -28,9 +28,7 @@ const Menu = () => {
           }}
         >
           <Grid
-            item
-            xs={12}
-            md={12}
+            size={{ xs: 12, md: 12 }}
             sx={{
               textAlign: "center",
             }}
@@ -40,7 +38,7 @@ const Menu = () => {
               先代から受け継ぐ「鉄板」「材料」「レシピ」を使った至高の逸品を紹介。
             </p>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MenuCard
               src={senbei.src}
               title="えびせん"
@@ -48,7 +46,7 @@ const Menu = () => {
               content="¥300/1枚　　¥500/2枚"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MenuCard
               src={ikayaki.src}
               title="いか焼き"
@@ -56,11 +54,11 @@ const Menu = () => {
               content="中サイズ¥700　　大サイズ¥900"
             />
           </Grid>
-          <Grid item xs={0} md={2}></Grid>
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 0, md: 2 }}></Grid>
+          <Grid size={{ xs: 12, md: 8 }}>
             <p>上記以外にも、アルコール類あります。</p>
           </Grid>
-          <Grid item xs={0} md={2}></Grid>
+          <Grid size={{ xs: 0, md: 2 }}></Grid>
         </Grid>
       </Container>
     </Box>
