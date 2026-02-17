@@ -53,7 +53,7 @@ const Available = () => {
                 size={{ xs: 12, md: 8 }}
                 sx={{ borderBottom: "1px rgba(12, 37, 51, 0.2) solid" }}
               >
-                【月/火/木～土】12:00-だいたい18:30(変動あり) 【日/水】定休日
+                【木/金/土】12:00-だいたい18:30(変動あり) 【日～水】定休日
               </Grid>
               <Grid size={{ xs: 12, md: 4 }} sx={{ fontWeight: 700 }}>
                 アクセス
