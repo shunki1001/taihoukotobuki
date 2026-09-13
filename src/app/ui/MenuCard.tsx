@@ -16,7 +16,7 @@ const MenuCard = (params: MenuCardInterface) => {
           src={params.src}
           width={350}
           height={350}
-          alt="Picture of the author"
+          alt={`${params.title}の写真`}
         />
       </CardMedia>
       <CardContent>
