@@ -37,18 +37,20 @@ const Footer = () => {
           sx={{ justifyContent: "center" }}
         >
           <IconButton
-            onClick={() => {
-              window.location.href =
-                "https://www.facebook.com/profile.php?id=100037388893472";
-            }}
+            component="a"
+            href="https://www.facebook.com/profile.php?id=100037388893472"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <FacebookIcon color="primary" fontSize="large" />
           </IconButton>
           <IconButton
-            onClick={() => {
-              window.location.href =
-                "https://www.instagram.com/taihoukotobuki/";
-            }}
+            component="a"
+            href="https://www.instagram.com/taihoukotobuki/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
           >
             <InstagramIcon color="primary" fontSize="large" />
           </IconButton>
