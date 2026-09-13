@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="jp">
+    <html lang="ja">
       <body className={sawarabi_gothic.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
