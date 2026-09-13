@@ -21,6 +21,10 @@ interface PostType {
 const LatestInfo = () => {
   const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [irregularHours, setIrregularHours] = useState<IrregularHour[]>([]);
+  // 取得失敗を「0件」と区別して表示するためのエラーstate。
+  // undefined=未確認, null=成功, string=エラーメッセージ
+  const [postsError, setPostsError] = useState<string | null>(null);
+  const [hoursError, setHoursError] = useState<string | null>(null);
 
   useEffect(() => {
     // 非同期関数を定義
@@ -30,7 +34,7 @@ const LatestInfo = () => {
         setLatestPosts(fetchedPosts); // 取得した投稿をステートにセット
       } catch (error) {
         console.error("投稿の取得に失敗しました:", error);
-        // エラーハンドリング (例: エラーメッセージをステートにセットするなど)
+        setPostsError("最新記事の取得に失敗しました。時間をおいて再度お試しください。");
       }
     };
 
@@ -41,7 +45,9 @@ const LatestInfo = () => {
         setIrregularHours(fetchedPosts); // 取得した投稿をステートにセット
       } catch (error) {
         console.error("投稿の取得に失敗しました:", error);
-        // エラーハンドリング (例: エラーメッセージをステートにセットするなど)
+        setHoursError(
+          "営業時間変更情報の取得に失敗しました。時間をおいて再度お試しください。"
+        );
       }
     };
 
@@ -67,28 +73,42 @@ const LatestInfo = () => {
           <Typography variant="h5" gutterBottom>
             最新のブログ記事
           </Typography>
-          <Grid container spacing={2}>
-            {latestPosts.map((post) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={post.id}>
-                <Link href={`/blog/${post.slug}`} passHref>
-                  <Paper elevation={3} sx={{ p: 2 }}>
-                    <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                      {post.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {post.status} - {post.date}
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
+          {postsError ? (
+            <Typography color="error" sx={{ mt: 2, mb: 2 }}>
+              {postsError}
+            </Typography>
+          ) : (
+            <Grid container spacing={2}>
+              {latestPosts.map((post) => (
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={post.id}>
+                  <Link href={`/blog/${post.slug}`} passHref>
+                    <Paper elevation={3} sx={{ p: 2 }}>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: "bold", mb: 1 }}
+                      >
+                        {post.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {post.status} - {post.date}
+                      </Typography>
+                    </Paper>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          )}
         </Box>
 
         <Box sx={{ width: "100%", mt: 4 }}>
           <Typography variant="h5" gutterBottom>
             営業時間の変更のお知らせ
           </Typography>
+          {hoursError ? (
+            <Typography color="error" sx={{ mt: 2, mb: 2 }}>
+              {hoursError}
+            </Typography>
+          ) : (
           <Grid container spacing={2}>
             {irregularHours.length === 0 && (
               <Grid size={{ xs: 12, sm: 4 }}>
@@ -115,6 +135,7 @@ const LatestInfo = () => {
               </Grid>
             ))}
           </Grid>
+          )}
         </Box>
       </Container>
     </Box>

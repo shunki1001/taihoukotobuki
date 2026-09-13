@@ -1,5 +1,5 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import type { Metadata } from "next";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -8,115 +8,116 @@ import Box from "@mui/material/Box";
 import Link from "next/link";
 import Fab from "@mui/material/Fab";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useParams } from "next/navigation";
 import {
   fetchBlogPostById,
-  BlogFormData,
   getAssetUrl,
 } from "../../../lib/contentfulContentsApi";
 import Header from "../Header";
 import Footer from "@/app/pages/Footer";
 import Image from "next/image";
 
-const BlogPostPage: React.FC = () => {
-  const { slug } = useParams();
-  const [post, setPost] = useState<BlogFormData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
-  useEffect(() => {
-    const loadPost = async (slug: string) => {
-      try {
-        const fetchedPost = await fetchBlogPostById(slug);
-        setPost(fetchedPost);
-      } catch (error) {
-        console.error("投稿の取得に失敗しました:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+const CONTENT_EXCERPT_LENGTH = 120;
 
-    if (typeof slug === "string") {
-      loadPost(slug);
-    }
-  }, [slug]);
-
-  useEffect(() => {
-    const fetchImageUrl = async () => {
-      if (post && post.imageAssetId) {
-        const url = await getAssetUrl(post.imageAssetId);
-        setImageUrl(url ?? null);
-      } else {
-        setImageUrl(null);
-      }
-    };
-    if (!post) return;
-    fetchImageUrl();
-  }, [post]);
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Container sx={{ mt: 4 }}>
-          <Typography variant="h5">Loading...</Typography>
-        </Container>
-        <Footer />
-      </>
-    );
-  }
+// 記事ごとのtitle/description/OGP画像をSNSシェア時にも反映させるため、
+// generateMetadataでサーバー側から取得する
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await fetchBlogPostById(slug);
 
   if (!post) {
-    return (
-      <>
-        <Header />
-        <Container sx={{ mt: 4 }}>
-          <Typography variant="h6">記事が見つかりません。</Typography>
-        </Container>
-        <Footer />
-      </>
-    );
+    return { title: "記事が見つかりません | 寿の店" };
   }
+
+  const description = post.content.slice(0, CONTENT_EXCERPT_LENGTH);
+  const imageUrl = post.imageAssetId
+    ? await getAssetUrl(post.imageAssetId)
+    : undefined;
+
+  return {
+    title: `${post.title} | 寿の店`,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      type: "article",
+    },
+  };
+}
+
+// サーバーコンポーネント化し、記事本文をサーバー側で取得する(SEO・LCP改善)。
+// 取得エラーと「記事が見つからない」を見分けられるよう、エラー用のフォールバック表示を持つ。
+const BlogPostPage = async ({ params }: Props) => {
+  const { slug } = await params;
+
+  let post: Awaited<ReturnType<typeof fetchBlogPostById>> = null;
+  let error: string | null = null;
+
+  try {
+    post = await fetchBlogPostById(slug);
+  } catch (e) {
+    console.error("投稿の取得に失敗しました:", e);
+    error = "記事の取得に失敗しました。時間をおいて再度お試しください。";
+  }
+
+  const imageUrl =
+    post && post.imageAssetId ? await getAssetUrl(post.imageAssetId) : null;
 
   return (
     <>
       <Header />
       <Container sx={{ mt: 4, mb: 4 }}>
-        <Card>
-          <CardContent>
-            <Typography variant="h4" component="h2" gutterBottom>
-              {post.title}
-            </Typography>
-            {imageUrl ? (
-              <Image
-                src={imageUrl}
-                alt={post.title}
-                width={900}
-                height={600}
-                style={{ width: "100%", height: "auto" }}
-              />
-            ) : null}
-            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-              公開日: {new Date(post.publishedDate).toLocaleDateString()}
-            </Typography>
-            <Box mt={2}>
-              {/* TODO: MarkdownをHTMLに変換して表示 */}
-              <Typography variant="body1" component="div">
-                {post.content}
+        {error ? (
+          <Typography variant="h6" color="error">
+            {error}
+          </Typography>
+        ) : !post ? (
+          <Typography variant="h6">記事が見つかりません。</Typography>
+        ) : (
+          <Card>
+            <CardContent>
+              <Typography variant="h4" component="h2" gutterBottom>
+                {post.title}
               </Typography>
-            </Box>
-          </CardContent>
-        </Card>
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={post.title}
+                  width={900}
+                  height={600}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              ) : null}
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                gutterBottom
+              >
+                公開日: {new Date(post.publishedDate).toLocaleDateString()}
+              </Typography>
+              <Box mt={2}>
+                {/* TODO: MarkdownをHTMLに変換して表示 */}
+                <Typography variant="body1" component="div">
+                  {post.content}
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        )}
       </Container>
-      <Fab
-        component={Link}
-        href="/blog"
-        color="primary"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-        aria-label="back to list"
-      >
-        <ArrowBackIcon />
-      </Fab>
+      <Link href="/blog">
+        <Fab
+          color="primary"
+          sx={{ position: "fixed", bottom: 16, right: 16 }}
+          aria-label="back to list"
+        >
+          <ArrowBackIcon />
+        </Fab>
+      </Link>
       <Footer />
     </>
   );
