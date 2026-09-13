@@ -1,6 +1,4 @@
 ## デプロイ
 
-```
-npm run build
-firebase deploy --only hosting
-```
+このリポジトリはVercelと連携しており、`main`ブランチへのpushで自動的に本番デプロイされます。
+手動でのデプロイ操作は不要です。
