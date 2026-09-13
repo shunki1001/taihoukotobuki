@@ -20,7 +20,12 @@ const Top = () => {
           zIndex: "-10",
         }}
       >
-        <Image src={top_view} fill objectFit="cover" alt="top view" />
+        <Image
+          src={top_view}
+          fill
+          style={{ objectFit: "cover" }}
+          alt="top view"
+        />
       </Box>
     </Container>
   );

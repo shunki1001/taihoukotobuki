@@ -47,8 +47,9 @@ const About = () => {
           <Grid size={{ xs: 12, sm: 6 }}>
             <Image
               src={store_front}
-              layout="responsive"
-              alt="Picture of the author"
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 600px) 100vw, 50vw"
+              alt="「寿の店」の店頭外観"
             />
           </Grid>
           <Grid
@@ -70,16 +71,18 @@ const About = () => {
           <Grid size={{ xs: 12, sm: 6 }}>
             <Image
               src={kitchen}
-              layout="responsive"
-              alt="Picture of the author"
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 600px) 100vw, 50vw"
+              alt="鉄板で焼き上げるいかやき"
             />
           </Grid>
           <Grid size={{ xs: 0, sm: 1 }}></Grid>
           <Grid size={{ xs: 12, sm: 6 }} sx={{ mt: 7 }}>
             <Image
               src={master}
-              layout="responsive"
-              alt="Picture of the author"
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 600px) 100vw, 50vw"
+              alt="厨房で仕込みをする店主"
             />
           </Grid>
           <Grid size={{ xs: 0, sm: 5 }}></Grid>
@@ -88,8 +91,9 @@ const About = () => {
           <Grid size={{ xs: 12, sm: 6 }} sx={{ mt: 7 }}>
             <Image
               src={teppan}
-              layout="responsive"
-              alt="Picture of the author"
+              style={{ width: "100%", height: "auto" }}
+              sizes="(max-width: 600px) 100vw, 50vw"
+              alt="鉄板プレス機"
             />
           </Grid>
           <Grid size={{ xs: 0, sm: 2 }}></Grid>
