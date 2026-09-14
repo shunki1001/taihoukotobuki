@@ -62,35 +62,32 @@ export const fetchBlogPostById = async (
 
 // Contentfulからブログ記事一覧を取得する関数
 export async function fetchPostsFromContentful() {
+  // 注: pageBlogPost コンテンツタイプに "status" フィールドは存在しない
+  // (クエリに "fields.status": "published" を指定すると Contentful が
+  // 422 UnknownField を返し、一覧取得自体が失敗する)。Delivery API は
+  // そもそもpublish済みのエントリしか返さないため、下書き除外の絞り込みは不要。
   const response = await contentfulClient.getEntries<any>({
     content_type: "pageBlogPost",
-    // Contentful側で「下書き」フラグ(fields.status)を立てたままpublishされてしまった
-    // 記事が公開一覧に混ざらないよう、クエリ側で絞り込む
-    "fields.status": "published",
     order: ["-fields.publishedDate"],
   });
 
-  return response.items
-    // クエリでのフィルタが効かない/フィールドが未設定のケースへの保険として、
-    // 取得後にも下書きを除外する(二重の安全策)
-    .filter((item: any) => item.fields.status !== "draft")
-    .map((item: any) => {
-      const fields = item.fields;
-      return {
-        id: item.sys.id,
-        title: fields.title?.ja || fields.title || "タイトルなし",
-        status: fields.status === "draft" ? "下書き" : "公開済み",
-        date: fields.publishedDate
-          ? new Date(fields.publishedDate).toISOString().slice(0, 10)
-          : "",
-        slug: fields.slug || "",
-        content: fields.content || "",
-        imageAssetId:
-          fields.imageAssetId && fields.imageAssetId.sys
-            ? fields.imageAssetId.sys.id
-            : null,
-      };
-    });
+  return response.items.map((item: any) => {
+    const fields = item.fields;
+    return {
+      id: item.sys.id,
+      title: fields.title?.ja || fields.title || "タイトルなし",
+      status: "公開済み",
+      date: fields.publishedDate
+        ? new Date(fields.publishedDate).toISOString().slice(0, 10)
+        : "",
+      slug: fields.slug || "",
+      content: fields.content || "",
+      imageAssetId:
+        fields.imageAssetId && fields.imageAssetId.sys
+          ? fields.imageAssetId.sys.id
+          : null,
+    };
+  });
 }
 
 /**
