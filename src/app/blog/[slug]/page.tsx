@@ -70,45 +70,64 @@ const BlogPostPage = async ({ params }: Props) => {
   return (
     <>
       <Header />
-      <Container sx={{ mt: 4, mb: 4 }}>
-        {error ? (
-          <Typography variant="h6" color="error">
-            {error}
-          </Typography>
-        ) : !post ? (
-          <Typography variant="h6">記事が見つかりません。</Typography>
-        ) : (
-          <Card>
-            <CardContent>
-              <Typography variant="h4" component="h2" gutterBottom>
-                {post.title}
-              </Typography>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background:
+            "linear-gradient(180deg, rgba(253,212,110,0.18) 0%, rgba(253,212,110,0.05) 240px, rgba(253,212,110,0) 480px)",
+        }}
+      >
+        <Container sx={{ pt: 6, pb: 6, maxWidth: "md" }}>
+          {error ? (
+            <Typography variant="h6" color="error">
+              {error}
+            </Typography>
+          ) : !post ? (
+            <Typography variant="h6">記事が見つかりません。</Typography>
+          ) : (
+            <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
               {imageUrl ? (
                 <Image
                   src={imageUrl}
                   alt={post.title}
                   width={900}
                   height={600}
-                  style={{ width: "100%", height: "auto" }}
+                  style={{ width: "100%", height: "auto", display: "block" }}
                 />
               ) : null}
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                gutterBottom
-              >
-                公開日: {new Date(post.publishedDate).toLocaleDateString()}
-              </Typography>
-              <Box mt={2}>
-                {/* TODO: MarkdownをHTMLに変換して表示 */}
-                <Typography variant="body1" component="div">
-                  {post.content}
+              <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
+                <Typography
+                  sx={{
+                    fontSize: { xs: "1.5em", sm: "1.75em" },
+                    fontWeight: 700,
+                    color: "#a74535",
+                    mb: 1,
+                  }}
+                >
+                  {post.title}
                 </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        )}
-      </Container>
+                <Typography
+                  variant="subtitle2"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  公開日: {new Date(post.publishedDate).toLocaleDateString()}
+                </Typography>
+                <Box mt={3}>
+                  {/* TODO: MarkdownをHTMLに変換して表示 */}
+                  <Typography
+                    variant="body1"
+                    component="div"
+                    sx={{ lineHeight: 1.9, whiteSpace: "pre-wrap" }}
+                  >
+                    {post.content}
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          )}
+        </Container>
+      </Box>
       <Link href="/blog">
         <Fab
           color="primary"

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardActionArea from "@mui/material/CardActionArea";
+import Box from "@mui/material/Box";
 import Link from "next/link";
 import Fab from "@mui/material/Fab";
 import HomeIcon from "@mui/icons-material/Home";
@@ -34,53 +34,79 @@ const BlogListPage = async () => {
   return (
     <>
       <Header />
-      <Container sx={{ mt: 4, mb: 4 }}>
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
-          最新記事一覧
-        </Typography>
-        <Typography variant="body1" align="center" gutterBottom>
-          寿の店の店主が気ままに情報を発信するブログです。
-        </Typography>
-
-        {error ? (
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background:
+            "linear-gradient(180deg, rgba(253,212,110,0.18) 0%, rgba(253,212,110,0.05) 240px, rgba(253,212,110,0) 480px)",
+        }}
+      >
+        <Container sx={{ pt: 6, pb: 4 }}>
           <Typography
-            variant="h6"
-            color="error"
-            align="center"
-            sx={{ mt: 4 }}
+            sx={{
+              fontSize: "2em",
+              fontWeight: 700,
+              color: "#a74535",
+              textAlign: "center",
+            }}
           >
-            {error}
+            最新記事一覧
           </Typography>
-        ) : posts.length === 0 ? (
-          <Typography variant="h6" align="center" sx={{ mt: 4 }}>
-            ブログ記事がありません。
+          <Typography variant="body1" align="center" sx={{ mt: 1, mb: 5 }}>
+            寿の店の店主が気ままに情報を発信するブログです。
           </Typography>
-        ) : (
-          <Grid container spacing={3}>
-            {posts.map((post) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={post.slug}>
-                <Card>
+
+          {error ? (
+            <Typography
+              variant="h6"
+              color="error"
+              align="center"
+              sx={{ mt: 4 }}
+            >
+              {error}
+            </Typography>
+          ) : posts.length === 0 ? (
+            <Typography variant="h6" align="center" sx={{ mt: 4 }}>
+              ブログ記事がありません。
+            </Typography>
+          ) : (
+            <Grid container spacing={3}>
+              {posts.map((post) => (
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <CardActionArea>
+                    <Card
+                      sx={{
+                        height: "100%",
+                        borderRadius: 2,
+                        borderLeft: "4px solid #a74535",
+                        transition: "box-shadow 0.2s, transform 0.2s",
+                        "&:hover": {
+                          boxShadow: 6,
+                          transform: "translateY(-2px)",
+                        },
+                      }}
+                    >
                       <CardContent>
-                        <Typography variant="h5" component="div">
+                        <Typography
+                          sx={{ fontSize: "1.15em", fontWeight: 700, mb: 1 }}
+                        >
                           {post.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                           {new Date(post.date).toLocaleDateString()}
                         </Typography>
                       </CardContent>
-                    </CardActionArea>
+                    </Card>
                   </Link>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </Container>
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </Container>
+      </Box>
       <Link href="/">
         <Fab
           color="primary"
